@@ -1,0 +1,3 @@
+/cygdrive/c/Users/Trader/Dropbox/alvin/cpp/TimeSeries/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/Trader/Dropbox/alvin/cpp/TimeSeries/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/Trader/Dropbox/alvin/cpp/TimeSeries/cmake-build-debug/CMakeFiles/TimeSeries.dir
