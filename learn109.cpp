@@ -25,4 +25,6 @@ int main()
     // Unfortunately, conversions that lose information, narrowing conversions, such as
     // double to int and int to char, are allowed and implicitly applied.
     // The problems caused by implicit narrowing conversions are a price paid for C compatibility.
+
+    cout << "output: learn109" << endl;
 }
