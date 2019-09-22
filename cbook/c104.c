@@ -2,6 +2,7 @@
 
 /* Formatting printf Output */
 
+// SYMBOLIC CONSTANTS
 #define MY_CONSTANT     10001
 #define MIN             -999
 #define MAX             999
