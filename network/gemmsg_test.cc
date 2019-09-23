@@ -1,13 +1,9 @@
-/*#include <iostream>
-#include <fstream>
-#include "addressbook.pb.h"*/
-
 #include <fstream>
 #include <google/protobuf/util/time_util.h>
 #include <iostream>
 #include <string>
 
-#include "addressbook3.pb.h"
+#include "gemmsg.pb.h"
 
 using namespace std;
 
@@ -28,10 +24,7 @@ options are provided for other supported languages.
 This generates the following files in your specified destination directory:
 - addressbook.pb.h, the header which declares your generated classes.
 - addressbook.pb.cc, which contains the implementation of your classes.
-*/
-
-
-/*
+*//*
 To compile a package that uses Protocol Buffers, you need to pass
 various flags to your compiler and linker. If you have pkg-config
 installed, then you can invoke it to get a list of flags like so:
@@ -43,28 +36,27 @@ installed, then you can invoke it to get a list of flags like so:
 For example:
 
     c++ my_program.cc my_proto.pb.cc `pkg-config --cflags --libs protobuf`
-*/
-
-/*
+*//*
 To compile:
 
     g++ -std=c++17 addressbook.cc addressbook.pb.cc `pkg-config --cflags --libs protobuf`
 */
 
 
-// Iterates though all people in the AddressBook and prints info about them.
-void ListPeople(const tutorial::AddressBook& address_book) {
-  for (int i = 0; i < address_book.people_size(); i++) {
-    const tutorial::Person& person = address_book.people(i);
+// Iterates though all GemMsg messages in the GemMsgList and prints info about them.
+void ListMessages(const trading::GemMsgList& message_list) {
+  for (int i = 0; i < message_list.people_size(); i++) {
+    const trading::GemMsg& msg = message_list.messages(i);
 
-    cout << "Person ID: " << person.id() << endl;
-    cout << "  Name: " << person.name() << endl;
-    if (person.email() != "") {
+    cout << "          ID: " << msg.id() << endl;
+    cout << "  Timestamp1: " << msg.timestamp1() << endl;
+    cout << "  Timestamp2: " << msg.timestamp2() << endl;
+    /*if (person.email() != "") {
       cout << "  E-mail address: " << person.email() << endl;
-    }
+    }*/
 
-    for (int j = 0; j < person.phones_size(); j++) {
-      const tutorial::Person::PhoneNumber& phone_number = person.phones(j);
+    /*for (int j = 0; j < msg.xxxxes_size(); j++) {
+      const trading::GemMsg::PhoneNumber& phone_number = person.phones(j);
 
       switch (phone_number.type()) {
         case tutorial::Person::MOBILE:
@@ -81,9 +73,9 @@ void ListPeople(const tutorial::AddressBook& address_book) {
           break;
       }
       cout << phone_number.number() << endl;
-    }
-    if (person.has_last_updated()) {
-      cout << "  Updated: " << TimeUtil::ToString(person.last_updated()) << endl;
+    }*/
+    if (msg.has_last_updated()) {
+      cout << "     Updated: " << TimeUtil::ToString(msg.last_updated()) << endl;
     }
   }
 }
@@ -91,28 +83,28 @@ void ListPeople(const tutorial::AddressBook& address_book) {
 
 int main()
 {
-    cout << "addressbook.cc program to test protobuf" << "\n\n";
+    cout << "gemmsg_test.cc program to test protobuf messaging" << "\n\n";
 
     // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-    tutorial::AddressBook address_book;
+    trading::GemMsgList message_list;
     
-    string filename = "./MyAddressBook";
+    string filename = "./MyGemMessages";
 
     cout << "Filename: '" << filename << "'\n\n";
 
     {
-        // Read the existing address book.
+        // Read the existing message list.
         fstream input(filename, ios::in | ios::binary);
         if (!address_book.ParseFromIstream(&input)) {
-            cerr << "Failed to parse address book." << endl;
+            cerr << "Failed to parse message list." << endl;
             return -1;
         }
     }
 
-    ListPeople(address_book);
+    ListMessages(message_list);
 
     cout << "\n";
 
