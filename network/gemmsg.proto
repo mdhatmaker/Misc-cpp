@@ -1,0 +1,37 @@
+// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+package trading;
+
+import "google/protobuf/timestamp.proto";
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "com.example.trading";
+option java_outer_classname = "GemMsgProtos";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "Google.Protobuf.Examples.Trading";
+// [END csharp_declaration]
+
+// [START messages]
+message GemMsg {
+  string timestamp1 = 1;
+  string timestamp2 = 2;
+  int32 id = 3;           // Unique ID for this message.
+  google.protobuf.Timestamp last_updated = 4;
+}
+
+// Any message list file we create is just one of these.
+message GemMsgList {
+  repeated GemMsg messages = 1;
+}
+// [END messages]
