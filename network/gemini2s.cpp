@@ -7,7 +7,7 @@
 #include <arpa/inet.h> 
 #include <netinet/in.h> 
   
-#define PORT     8080 
+#define PORT    8080 
 #define MAXLINE 1024 
   
 #define MSG_CONFIRM 0
@@ -16,9 +16,8 @@
 int main() { 
     int sockfd; 
     char buffer[MAXLINE]; 
-    char *hello = "Hello from server"; 
     struct sockaddr_in servaddr, cliaddr; 
-      
+    
     // Creating socket file descriptor 
     if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) { 
         perror("socket creation failed"); 
@@ -30,9 +29,10 @@ int main() {
       
     // Filling server information 
     servaddr.sin_family    = AF_INET; // IPv4 
-    servaddr.sin_addr.s_addr = INADDR_ANY; 
+    servaddr.sin_addr.s_addr = INADDR_ANY;
+    //servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     servaddr.sin_port = htons(PORT); 
-      
+    
     // Bind the socket with the server address 
     if ( bind(sockfd, (const struct sockaddr *)&servaddr,  
             sizeof(servaddr)) < 0 ) 
@@ -40,18 +40,26 @@ int main() {
         perror("bind failed"); 
         exit(EXIT_FAILURE); 
     } 
-      
+    
+    in_addr_t addr = servaddr.sin_addr.s_addr;
+    unsigned short port = ntohs(servaddr.sin_port);
+    printf("Server Running  %lu : %u\n", (unsigned long)addr, (unsigned int)port);
+    
+
     socklen_t len;
     ssize_t n;
-    //int len, n; 
-    n = recvfrom(sockfd, (char *)buffer, MAXLINE,  
-                MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len); 
-    buffer[n] = '\0'; 
-    printf("Client : %s\n", buffer); 
-    sendto(sockfd, (const char *)hello, strlen(hello),  
-        MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len); 
-    printf("Hello message sent.\n");  
-      
+    while (true)
+    {
+        n = recvfrom(sockfd, (char *)buffer, MAXLINE,  
+                    MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len); 
+        buffer[n] = '\0'; 
+        printf("Client : %s\n", buffer); 
+
+        /*sendto(sockfd, (const char *)hello, strlen(hello),  
+            MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len); 
+        printf("Hello message sent.\n");*/
+    }
+    
     return 0; 
 } 
 

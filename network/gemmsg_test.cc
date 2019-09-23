@@ -45,7 +45,7 @@ To compile:
 
 // Iterates though all GemMsg messages in the GemMsgList and prints info about them.
 void ListMessages(const trading::GemMsgList& message_list) {
-  for (int i = 0; i < message_list.people_size(); i++) {
+  for (int i = 0; i < message_list.messages_size(); i++) {
     const trading::GemMsg& msg = message_list.messages(i);
 
     cout << "          ID: " << msg.id() << endl;
@@ -98,7 +98,7 @@ int main()
     {
         // Read the existing message list.
         fstream input(filename, ios::in | ios::binary);
-        if (!address_book.ParseFromIstream(&input)) {
+        if (!message_list.ParseFromIstream(&input)) {
             cerr << "Failed to parse message list." << endl;
             return -1;
         }

@@ -5,8 +5,9 @@
 
 all: cpp python
 
-cpp:    add_person_cpp    list_people_cpp		addressbook_cpp
-python: add_person_python list_people_python
+#cpp:    add_person_cpp    list_people_cpp		addressbook_cpp
+cpp:	gemmsg_cpp 			gemmsg_add_cpp
+python: add_person_python 	list_people_python
 
 clean:
 	rm -f add_person_cpp list_people_cpp add_person_python list_people_python
@@ -20,6 +21,14 @@ clean:
 protoc_middleman: addressbook.proto
 	protoc $$PROTO_PATH --cpp_out=. --python_out=. addressbook.proto
 	@touch protoc_middleman
+
+gemmsg_add_cpp: gemmsg_add.cc protoc_middleman
+	pkg-config --cflags protobuf  # fails if protobuf is not installed
+	g++ -std=c++17 gemmsg_add.cc gemmsg.pb.cc -o gemmsg_add_cpp `pkg-config --cflags --libs protobuf`
+
+gemmsg_cpp: gemmsg_test.cc protoc_middleman
+	pkg-config --cflags protobuf  # fails if protobuf is not installed
+	g++ -std=c++17 gemmsg_test.cc gemmsg.pb.cc -o gemmsg_cpp `pkg-config --cflags --libs protobuf`
 
 add_person_cpp: add_person.cc protoc_middleman
 	pkg-config --cflags protobuf  # fails if protobuf is not installed
