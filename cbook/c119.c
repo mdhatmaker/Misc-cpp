@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
     for (int y = 2019; y < 2026; ++y)
         printf("%d %d\n", y, day_of_year(y, 3, 1));     // display results for Mar 1st of each year
 
-<<<<<<< HEAD
     // VOID POINTERS
     float g = 3.14;
     void *vptr=&g;
@@ -65,7 +64,6 @@ int main(int argc, char *argv[])
     printf("%f\n", f);
 
     
-=======
     printf("%s\n", month_name(3));
 
     // Display command-line arguments (if any exist)
@@ -79,6 +77,5 @@ int main(int argc, char *argv[])
     printf("\n");
 
     return 0;
->>>>>>> 2736ff45e116e36411c0968664c243fd23c91270
 }
 
