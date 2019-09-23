@@ -32,6 +32,12 @@ int main()
     for (int y = 2019; y < 2034; ++y)
         printf("%d %d\n", y, day_of_year(y, 3, 1));     // display results for Mar 1st of each year
 
+    // VOID POINTERS
+    float g = 3.14;
+    void *vptr=&g;
+    float f = *(float *)vptr;
+    printf("%f\n", f);
 
+    
 }
 
