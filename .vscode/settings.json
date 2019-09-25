@@ -5,6 +5,6 @@
     },
 
     "code-runner.executorMap": {
-        "cpp": "g++ -std=c++17 $fullFileName && ./a.out"
+        "cpp": "g++ -std=c++17 $fullFileName && a.exe"
     }
 }
