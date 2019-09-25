@@ -1,0 +1,3 @@
+# incoming and outgoing UDP streams for Gemini message app
+incoming=192.168.9.10:37865,192.168.9.11:37654,192.168.10.15:28976
+outgoing=192.168.11.155:48763
