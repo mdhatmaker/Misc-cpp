@@ -4,9 +4,9 @@
         "ostream": "cpp"
     },
 
-    "code-runner.executorMap": {
-        //"cpp": "g++ -std=c++17 $fullFileName && a.exe",
-        "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    /*"code-runner.executorMap": {
+        "cpp": "g++ -std=c++17 $fullFileName && ./a.exe",
+        //"cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
-    }
+    }*/
 }
