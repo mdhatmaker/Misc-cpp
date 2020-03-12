@@ -140,8 +140,8 @@ int main()
 {
     std::string path = R"(D:\Users\mhatmaker\Downloads\torrents\COMPLETED_TORRENTS)";
     //std::vector<std::string> fileExts = {".avi", ".mkv", ".mp4"};
-    //std::vector<std::string> fileExts = {".pdf", ".epub", ".mobi"}; //, ".azw3", ".chm"};
-    std::vector<std::string> fileExts = {".avi", ".mkv", ".mp4", ".pdf", ".epub", ".mobi"};
+    //std::vector<std::string> fileExts = {".pdf", ".epub", ".mobi", ".azw3", ".djvu"); //, ".chm"};
+    std::vector<std::string> fileExts = {".avi", ".mkv", ".mp4", ".pdf", ".epub", ".mobi", ".azw", ".azw3", ".djvu"};
 
     std::cout << "PATH --> " << path << "\n\n";
 
